@@ -33,7 +33,7 @@
 - name: Load ldap root entry
   ldap_entry:
     server_uri: "{{ldap_server_uri}}"
-    bind_dn: "{{ldap_basedn}}"
+    bind_dn: "{{ldap_bind_basedn}}"
     bind_pw: "{{ldap_bind_pw}}"
     dn: "{{ldap_basedn}}"
     objectClass:
@@ -43,7 +43,7 @@
 - name: Load groups and users parent entry
   ldap_entry:
     server_uri: "{{ldap_server_uri}}"
-    bind_dn: "{{ldap_basedn}}"
+    bind_dn: "{{ldap_bind_basedn}}"
     bind_pw: "{{ldap_bind_pw}}"
     dn: "ou={{item}},{{ldap_basedn}}"
     objectClass:
@@ -56,7 +56,7 @@
 - name: Load users
   ldap_entry:
     server_uri: "{{ldap_server_uri}}"
-    bind_dn: "{{ldap_basedn}}"
+    bind_dn: "{{ldap_bind_basedn}}"
     bind_pw: "{{ldap_bind_pw}}"
     dn: "cn={{item.value.cn}},ou=people,{{ldap_basedn}}"
     objectClass:
@@ -77,7 +77,7 @@
 - name: Load groups
   ldap_entry:
     server_uri: "{{ldap_server_uri}}"
-    bind_dn: "{{ldap_basedn}}"
+    bind_dn: "{{ldap_bind_basedn}}"
     bind_pw: "{{ldap_bind_pw}}"
     dn: "cn={{item.name}},ou=groups,{{ldap_basedn}}"
     objectClass:
@@ -90,7 +90,7 @@
 - name: Add users to groups
   ldap_attr:
     server_uri: "{{ldap_server_uri}}"
-    bind_dn: "{{ldap_basedn}}"
+    bind_dn: "{{ldap_bind_basedn}}"
     bind_pw: "{{ldap_bind_pw}}"
     dn: "cn={{item.0.name}},ou=groups,{{ldap_basedn}}"
     name: uniqueMember
@@ -103,7 +103,7 @@
 - name: Remove dummy entry
   ldap_attr:
     server_uri: "{{ldap_server_uri}}"
-    bind_dn: "{{ldap_basedn}}"
+    bind_dn: "{{ldap_bind_basedn}}"
     bind_pw: "{{ldap_bind_pw}}"
     dn: "cn={{item.name}},ou=groups,{{ldap_basedn}}"
     name: uniqueMember
