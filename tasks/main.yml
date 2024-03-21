@@ -88,7 +88,7 @@
   with_items: "{{ldap_groups}}"
 
 - name: Add users to groups
-  ldap_attr:
+  ldap_attrs:
     server_uri: "{{ldap_server_uri}}"
     bind_dn: "{{ldap_bind_basedn}}"
     bind_pw: "{{ldap_bind_pw}}"
@@ -101,7 +101,7 @@
     - members
 
 - name: Remove dummy entry
-  ldap_attr:
+  ldap_attrs:
     server_uri: "{{ldap_server_uri}}"
     bind_dn: "{{ldap_bind_basedn}}"
     bind_pw: "{{ldap_bind_pw}}"
